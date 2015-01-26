@@ -18,6 +18,7 @@ print "His teeth are usually {} depending on the coffee.".format(teeth)
 print "If I add {:0>2d}, {:0>2d}, and {:0>2d} I get {:0>2d}.".format(age, height, weight, age+height+weight)
 
 '''
+format string
 Number 	    Format 	    Output 	    Description
 3.1415926 	{:.2f} 	    3.14 	    2 decimal places
 3.1415926 	{:+.2f} 	+3.14 	    2 decimal places with sign

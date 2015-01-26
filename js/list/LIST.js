@@ -126,4 +126,3 @@ function getElement() {
     return this.dataStore[this.pos];
 }
 
-
