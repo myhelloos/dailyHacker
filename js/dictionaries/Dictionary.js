@@ -6,6 +6,7 @@ function Dictionary() {
     this.showAll = showAll;
     this.count = count;
     this.clear = clear;
+    this.replace = replace;
 }
 
 function add (key, value) {
@@ -38,4 +39,12 @@ function clear() {
     for each (var key in Object.keys(this.dataStore)) {
         delete this.dataStore[key];
     }
+}
+
+function replace(key, value) {
+    if (!this.find(key)) {
+        return false;
+    }
+    this.dataStore[key] = value;
+    return true;
 }
