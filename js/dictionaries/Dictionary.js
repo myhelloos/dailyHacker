@@ -21,7 +21,7 @@ function remove(key) {
 }
 
 function showAll() {
-    for each (var key in Object.keys(this.dataStore)) {
+    for each (var key in Object.keys(this.dataStore).sort()) {
         print (key + " -> " + this.dataStore[key]);
     }
 }
