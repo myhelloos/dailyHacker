@@ -27,6 +27,7 @@ for (var i = 0; i < students.length; i++) {
 }
 print("\n\nData distribution: \n");
 var hTable = new HashTable();
+hTable.buildChains();
 for (var i = 0; i < students.length; i++) {
     hTable.put(students[i], students[i]);
 }
