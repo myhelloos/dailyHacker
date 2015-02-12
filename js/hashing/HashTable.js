@@ -4,12 +4,16 @@ function HashTable() {
     this.betterHash = betterHash;
     this.showDistro = showDistro;
     this.put = put;
-    // this.get = get;
+    this.get = get;
 }
 
-function put(data) {
-    var pos = this.betterHash(data);
+function put(key, data) {
+    var pos = this.betterHash(key);
     this.table[pos] = data;
+}
+
+function get(key) {
+    return this.table[this.betterHash(key)];
 }
 
 function showDistro() {
