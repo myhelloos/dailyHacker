@@ -1,7 +1,7 @@
 load("HashTable.js");
 
 var pnumbers = new HashTable();
-pnumbers.buildChains();
+// pnumbers.buildChains();
 var name, number;
 for (var i = 0; i < 3; i++) {
     putstr("Enter a name (space to quit): ");

@@ -1,38 +1,37 @@
 function HashTable() {
     this.table = new Array(137);
+    this.values = new Array(137);
     this.simpleHash = simpleHash;
     this.betterHash = betterHash;
     this.showDistro = showDistro;
     this.put = put;
     this.get = get;
-    this.buildChains = buildChains;
+    // this.buildChains = buildChains;
 }
 
 function put(key, data) {
     var pos = this.betterHash(key);
-    var index = 0;
-    if (this.table[pos][index] == undefined) {
-        this.table[pos][index] = key;
-        this.table[pos][index+1] = data;
+    if (this.table[pos] == undefined) {
+        this.table[pos] = key;
+        this.values[pos] = data;
     } else {
-        while (this.table[pos][index] != undefined) {
-            index += 2;
+        while (this.table[pos] != undefined) {
+            pos++;
         }
-        this.table[pos][index] = key;
-        this.table[pos][index+1] = data;
+        this.table[pos] = key;
+        this.values[pos] = data;
     }
 }
 
 function get(key) {
-    var index = 0;
-    var hash = this.betterHash(key);
-    if (this.table[pos][index] = key) {
-        return this.table[pos][index+1];
-    } else {
-        while (this.table[pos][index] != key) {
-            index += 2;
+    var hash = -1;
+    hash = this.betterHash(key);
+    if (hash > -1) {
+        for (var i = hash; this.table[i] != undefined; i++) {
+            if (this.table[hash] == key) {
+                return this.values[hash];
+            }
         }
-        return this.table[pos][index+1];
     }
     return undefined;
 }
@@ -40,12 +39,8 @@ function get(key) {
 function showDistro() {
     var n = 0;
     for (var i = 0; i < this.table.length; i++) {
-        if (this.table[i][0] != undefined) {
-            var data = "";
-            for (var j = 1; j < this.table[i].length; j += 2) {
-                data += this.table[i][j] + "\t";
-            }
-            print (i + ": " + data);
+        if (this.values[i] != undefined) {
+            print (i + ": " + this.values[i]);
         }
     }
 }
