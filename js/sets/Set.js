@@ -14,12 +14,13 @@ function Set() {
     this.dataStore = [];
     this.add = add;
     this.remove = remove;
-    // this.size = size;
-    // this.union = union;
-    // this.intersect = intersect;
-    // this.subset = subset;
-    // this.difference = difference;
+    this.size = size;
+    this.union = union;
+    this.intersect = intersect;
+    this.subset = subset;
+    this.difference = difference;
     this.show = show;
+    this.contains = contains;
 }
 
 function add(data) {
@@ -41,4 +42,57 @@ function remove(data) {
 
 function show() {
     return this.dataStore;
+}
+
+function contains(data) {
+    return this.dataStore.indexOf(data) > -1;
+}
+
+function union(set) {
+    var tempSet = new Set();
+    for (var i = 0; i < this.dataStore.length; i++) {
+        tempSet.add(this.dataStore[i]);
+    }
+    for (var i = 0; i < set.dataStore.length; i++) {
+        if (!tempSet.contains(set.dataStore[i])) {
+            tempSet.add(set.dataStore[i]);
+        }
+    }
+    return tempSet;
+}
+
+function intersect(set) {
+    var tempSet = new Set();
+    for (var i = 0; i < this.dataStore.length; ++i) {
+        if (set.contains(this.dataStore[i])) {
+            tempSet.add(this.dataStore[i]);
+        }
+    }
+    return tempSet;
+}
+
+function subset(set) {
+    if (this.size() > set.size()) {
+        return false;
+    }
+    for each (var member in this.dataStore) {
+        if(!set.contains(member)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function size() {
+    return this.dataStore.length;
+}
+
+function difference(set) {
+    var tempSet = new Set();
+    for (var i = 0; i < this.dataStore.length; i++) {
+        if (!set.contains(this.dataStore[i])) {
+            tempSet.add(this.dataStore[i]);
+        }
+    }
+    return tempSet;
 }
