@@ -1,5 +1,6 @@
 function Node(data, left, right) {
 	this.data = data;
+    this.count = 1;
 	this.left = left;
 	this.right = right;
 	this.show = show;
@@ -16,6 +17,7 @@ function BST() {
 	this.getMin = getMin;
 	this.find = find;
     this.remove = remove;
+    this.update = update;
 }
 
 function insert(data) {
@@ -62,6 +64,9 @@ function getMax() {
 
 function find(data) {
     var current = this.root;
+    if (current == null) {
+        return null;
+    }
     while (current.data != data) {
         if (data < current.data) {
             current = current.left;
@@ -108,6 +113,12 @@ function removeNode(node, data) {
         node.right = removeNode(node.right, data);
         return node;
     }
+}
+
+function update(data) {
+    var grade = this.find(data);
+    grade.count++;
+    return grade;
 }
 
 function inOrder(node) {
