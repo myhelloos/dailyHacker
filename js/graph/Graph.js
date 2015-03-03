@@ -42,6 +42,7 @@ If the graph is a directed graph, and all its vertices are strongly connected,
 *******************************************************************************/
 function Graph(v) {
     this.vertices = v;
+    this.vertexList = [];
     this.edges = 0;
     this.adj = [];
     for (var i = 0; i < this.vertices; i++) {
@@ -50,19 +51,24 @@ function Graph(v) {
     this.addEdge = addEdge;
     this.showGraph = showGraph;
     this.dfs = dfs;
-    this.bfs = bfs;
     this.marked = [];
     for (var i = 0; i < this.vetices; i++) {
         this.marked[i] = false;
     }
+    this.bfs = bfs;
+    this.edgeTo = [];
+    this.pathTo = pathTo;
+    this.hasPathTo = hasPathTo;
+    this.topSort = topSort;
+    this.topSortHelper = topSortHelper;
 }
 
 function addEdge(v, w) {
     this.adj[v].push(w);
-    this.adj[w].push(v);
     this.edges++;
 }
 
+/*
 function showGraph() {
     for (var i = 0; i < this.vertices; ++i) {
         putstr(i + " -> ");
@@ -74,13 +80,26 @@ function showGraph() {
         print();
     }
 }
+*/
+
+// a new function to display symbolic names instead of numbers
+function showGraph() {
+    var visited = [];
+    for (var i = 0; i < this.vertices; ++i) {
+        putstr(this.vertexList[i] + " -> ");
+        visited.push(this.vertexList[i]);
+        for each (var j in this.adj[i]) {
+            if (visited.indexOf(j) < 0) {
+                putstr(this.vertexList[j] + ' ');
+            }
+        }
+        print();
+        visited.pop();
+    }
+}
 
 function dfs(v) {
     this.marked[v] = true;
-    // if statement for print is not required
-    if (this.adj[v] != undefined) {
-        print("Visited verted: " + v);
-    }
     for each (var w in this.adj[v]) {
         if (!this.marked[w]) {
             this.dfs(w);
@@ -91,17 +110,60 @@ function dfs(v) {
 function bfs(s) {
     var queue = [];
     this.marked[s] = true;
-    queue.push(s); // add to back of queue
+    queue.unshift(s); // add to back of queue
     while (queue.length > 0) {
         var v = queue.shift(); // remove from front of queue
-        if (v != undefined) {
-            print("Visited vertex: " + v);
-        }
         for each (var w in this.adj[v]) {
             if (!this.marked[w]) {
+                this.edgeTo[w] = v;
                 this.marked[w] = true;
-                queue.push(w);
+                queue.unshift(w);
             }
         }
     }
+}
+
+function pathTo(v) {
+    var source = 0;
+    this.bfs(source);
+    if (!this.hasPathTo(v)) {
+        return undefined;
+    }
+    var path = [];
+    for (var i = v; i != source; i = this.edgeTo[i]) {
+        path.push(i);
+    }
+
+    path.push(source);
+    return path;
+}
+
+function hasPathTo(v) {
+    return this.marked[v];
+}
+
+function topSort() {
+    var stack = [];
+    var visited = [];
+    for (var i = 0; i < this.vertices; i++) {
+        visited[i] = false;
+    }
+    for (var i = 0; i < this.vertices; i++) {
+        if (visited[i] == false) {
+            this.topSortHelper(i, visited, stack);
+        }
+    }
+    for (var i = 0; i < stack.length; i++) {
+            print(this.vertexList[stack[i]]);
+    }
+}
+
+function topSortHelper(v, visited, stack) {
+    visited[v] = true;
+    for each(var w in this.adj[v]) {
+        if (!visited[w]) {
+            this.topSortHelper(w, visited, stack);
+        }
+    }
+    stack.unshift(v);
 }
