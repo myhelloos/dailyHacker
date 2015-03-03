@@ -46,10 +46,15 @@ function Graph(v) {
     this.adj = [];
     for (var i = 0; i < this.vertices; i++) {
         this.adj[i] = [];
-        this.adj[i].push("");
     }
     this.addEdge = addEdge;
     this.showGraph = showGraph;
+    this.dfs = dfs;
+    this.bfs = bfs;
+    this.marked = [];
+    for (var i = 0; i < this.vetices; i++) {
+        this.marked[i] = false;
+    }
 }
 
 function addEdge(v, w) {
@@ -67,5 +72,36 @@ function showGraph() {
             }
         }
         print();
+    }
+}
+
+function dfs(v) {
+    this.marked[v] = true;
+    // if statement for print is not required
+    if (this.adj[v] != undefined) {
+        print("Visited verted: " + v);
+    }
+    for each (var w in this.adj[v]) {
+        if (!this.marked[w]) {
+            this.dfs(w);
+        }
+    }
+}
+
+function bfs(s) {
+    var queue = [];
+    this.marked[s] = true;
+    queue.push(s); // add to back of queue
+    while (queue.length > 0) {
+        var v = queue.shift(); // remove from front of queue
+        if (v != undefined) {
+            print("Visited vertex: " + v);
+        }
+        for each (var w in this.adj[v]) {
+            if (!this.marked[w]) {
+                this.marked[w] = true;
+                queue.push(w);
+            }
+        }
     }
 }
