@@ -3,7 +3,6 @@ load("CArray.js");
 var numElements = 10000;
 var nums = new CArray(numElements);
 nums.setData();
-nums.dataStore.sort();
 var start = new Date().getTime();
 nums.qSort();
 var stop = new Date().getTime();
