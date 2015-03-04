@@ -1,24 +1,29 @@
 function CArray(numElements) {
-		this.dataStore = [];
-		this.pos = 0;
-		this.numElements = numElements;
-		this.insert = insert;
-		this.toString = toString;
-		this.clear = clear;
-		this.setData = setData;
-		this.swap = swap;
+	this.dataStore = [];
+	this.pos = 0;
+	this.numElements = numElements;
+	this.insert = insert;
+	this.toString = toString;
+	this.clear = clear;
+	this.setData = setData;
+	this.swap = swap;
 
-		this.bubbleSort = bubbleSort;
-		this.selectionSort = selectionSort;
-		this.insertionSort = insertionSort;
+	this.bubbleSort = bubbleSort;
+	this.selectionSort = selectionSort;
+	this.insertionSort = insertionSort;
 
-		for (var i = 0; i < numElements; i++) {
-			this.dataStore[i] = i;
-		}
+	this.gaps = [701, 301, 132, 57, 23, 10, 4, 1];
+	this.shellSort = shellSort;
+    this.shellSort1 = shellSort1;
+
+	for (var i = 0; i < numElements; i++) {
+		this.dataStore[i] = i;
 	}
-	/*******************************************************************************
-	                                    Basic Sort Algorithm
-	*******************************************************************************/
+}
+
+/*******************************************************************************
+                                    Basic Sort Algorithm
+*******************************************************************************/
 function bubbleSort() {
 	var numElements = this.dataStore.length;
 	var temp;
@@ -54,6 +59,43 @@ function insertionSort() {
 			inner--;
 		}
 		this.dataStore[inner] = temp;
+	}
+}
+
+/*******************************************************************************
+                                    Advance Sort Algorithm
+*******************************************************************************/
+
+function setGaps(arr) {
+	this.gaps = arr;
+}
+
+function shellSort() {
+	for (var g = 0; g < this.gaps.length; g++) {
+		for (var i = this.gaps[g]; i < this.dataStore.length; i++) {
+			var temp = this.dataStore[i];
+			for (var j = i; j >= this.gaps[g] &&
+				this.dataStore[j - this.gaps[g]] > temp; j -= this.gaps[g]) {
+				this.dataStore[j] = this.dataStore[j - this.gaps[g]];
+			}
+			this.dataStore[j] = temp;
+		}
+	}
+}
+
+function shellSort1() {
+	var N = this.dataStore.length
+	var h = 1;
+	while (h < N / 3) {
+		h = 3 * h + 1;
+	}
+	while (h >= 1) {
+		for (var i = h; i < N; i++) {
+			for (var j = i; j >= h && this.dataStore[j] < this.dataStore[j - h]; j -= h) {
+				swap(this.dataStore, j, j - h);
+			}
+		}
+		h = (h - 1) / 3;
 	}
 }
 
