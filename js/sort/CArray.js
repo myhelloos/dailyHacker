@@ -16,6 +16,7 @@ function CArray(numElements) {
 	this.shellSort = shellSort;
 	this.shellSort1 = shellSort1;
     this.mergeSort = mergeSort;
+    this.qSort = qSort
 
 	for (var i = 0; i < numElements; i++) {
 		this.dataStore[i] = i;
@@ -151,6 +152,26 @@ function mergeArray(arr, startLeft, stopLeft, startRight, stopRight) {
 	}
 }
 
+function qSort() {
+    this.dataStore = qSortHelper(this.dataStore);
+}
+
+function qSortHelper(arr) {
+    if (arr == 0) {
+        return [];
+    }
+    var left = [];
+    var right = [];
+    var pivot = arr[0];
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else  {
+            right.push(arr[i]);
+        }
+    }
+    return qSortHelper(left).concat(pivot, qSortHelper(right));
+}
 
 /*******************************************************************************
 	                                    Array Test Bed
