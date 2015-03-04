@@ -8,11 +8,31 @@ function CArray(numElements) {
     this.setData = setData;
     this.swap = swap;
 
+    this.bubbleSort = bubbleSort;
+
     for (var i = 0; i < numElements; i++) {
         this.dataStore[i] = i;
     }
 }
+/*******************************************************************************
+                                    Basic Sort Algorithm
+*******************************************************************************/
+function bubbleSort() {
+    var numElements = this.dataStore.length;
+    var temp;
+    for (var outer = numElements; outer >= 2; outer--) {
+        for (var inner = 0; inner <= outer-1; inner++) {
+            if (this.dataStore[inner] > this.dataStore[inner+1]) {
+                swap(this.dataStore, inner, inner+1);
+            }
+        }
+    }
+}
 
+
+/*******************************************************************************
+                                    Array Test Bed
+*******************************************************************************/
 function setData() {
     for (var i = 0; i < this.numElements; i++) {
         this.dataStore[i] = Math.floor(Math.random() *
