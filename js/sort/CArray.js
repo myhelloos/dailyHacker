@@ -162,7 +162,7 @@ function qSortHelper(arr) {
     }
     var left = [];
     var right = [];
-    var pivot = arr[0];
+    var pivot = pivotChooser(arr);
     for (var i = 1; i < arr.length; i++) {
         if (arr[i] < pivot) {
             left.push(arr[i]);
@@ -171,6 +171,31 @@ function qSortHelper(arr) {
         }
     }
     return qSortHelper(left).concat(pivot, qSortHelper(right));
+}
+
+function pivotChooser(arr) {
+    var middle = arr.length / 2;
+    if (arr[0] < arr[middle]) {
+        if (arr[middle] < arr[arr.length - 1]) {
+            return arr[middle];
+        } else {
+            if (arr[0] < arr[arr.length - 1]) {
+                return arr[arr.length - 1];
+            } else {
+                return arr[0];
+            }
+        }
+    } else {
+        if (arr[arr.length -1] < arr[middle]) {
+            return arr[middle];
+        } else {
+            if (arr[arr.length - 1] < arr[0]) {
+                return arr[arr.length - 1];
+            } else {
+                return arr[0];
+            }
+        }
+    }
 }
 
 /*******************************************************************************
