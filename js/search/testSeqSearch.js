@@ -8,8 +8,9 @@ disArr(nums);
 putstr("Enter a number to search for: ");
 var num = parseInt(readline());
 print();
-if (seqSearch(nums, num)) {
-    print(num + " is in the array.");
+var position = seqSearch(nums, num);
+if (position > -1) {
+    print(num + " is in the array at position " + position);
 } else {
     print(num + " is not in the array.");
 }
