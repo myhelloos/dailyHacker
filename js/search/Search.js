@@ -1,10 +1,13 @@
 function seqSearch(arr, data) {
 	for (var i = 0; i < arr.length; i++) {
 		if (arr[i] == data) {
-			return i;
+			if (i > 0) {
+				swap(arr, i, i - 1);
+			}
+            return true;
 		}
 	}
-	return -1;
+	return false;
 }
 
 function findMin(arr) {
@@ -37,4 +40,10 @@ function disArr(arr) {
 	if (i % 10 != 0) {
 		putstr("\n");
 	}
+}
+
+function swap(arr, index1, index2) {
+	var temp = arr[index1];
+	arr[index1] = arr[index2];
+	arr[index2] = temp;
 }
