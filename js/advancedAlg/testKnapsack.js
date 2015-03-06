@@ -6,3 +6,5 @@ var capacity = 16;
 print(recKnapsack(capacity, size, value, value.length));
 
 print(dynKnapsack(capacity, size, value, value.length));
+
+print(ksack(value, size, capacity));
