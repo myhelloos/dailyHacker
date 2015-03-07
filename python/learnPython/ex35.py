@@ -18,7 +18,7 @@ def gold_room():
 def bear_room():
     print "There is a bear here."
     print "The bear has a bunch of honey."
-    print "The fat bear is in front of another bear."
+    print "The fat bear is in front of another door."
     print "How are you going to move the bear?"
     bear_moved = False
 
