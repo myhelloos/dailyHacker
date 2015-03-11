@@ -58,7 +58,7 @@ def delete(aMap, key):
 
     for i in xrange(len(bucket)):
         k, v = bucket[i]
-        if k == v:
+        if key == k:
             del bucket[i]
             break
 
