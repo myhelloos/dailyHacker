@@ -13,3 +13,7 @@ From the O'Reilly book [Flask Web Development]{http://www.flaskbook.com}
 	`$ source venv/bin/activate`
 * leave the virtual environment:
 	`$ deactive`
+
+* db upgrade
+	1. `python manager.py db migrate -m "information"`
+	2. `python manager.py db upgrade`
