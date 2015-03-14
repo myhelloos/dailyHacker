@@ -5,7 +5,7 @@ from . import auth
 from .. import db
 from ..models import User
 from ..email import send_email
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, ChangePasswordForm
 
 
 @auth.before_app_request
@@ -23,6 +23,7 @@ def unconfirmed():
         return redirect(url_for('main.index'))
     return render_template('auth/unconfirmed.html')
 
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -34,11 +35,14 @@ def login():
         flash('Invalid username or password.')
     return render_template('auth/login.html', form=form)
 
+
 @auth.route('/logout')
+@login_required
 def logout():
     logout_user()
     flash('You hava been logged out.')
     return redirect(url_for('main.index'))
+
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -51,10 +55,11 @@ def register():
         db.session.commit()
         token = user.generate_confirmation_token()
         send_email(user.email, 'Confirm Your Account',
-                    'auth/email/confirm', user=user, token=token)
+                   'auth/email/confirm', user=user, token=token)
         flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('main.index'))
     return render_template('auth/register.html', form=form)
+
 
 @auth.route('/confirm/<token>')
 @login_required
@@ -67,11 +72,27 @@ def confirm(token):
         flash('The confirmation link is invalid or has expored.')
     return redirect(url_for('main.index'))
 
+
 @auth.route('/confirm')
 @login_required
 def resend_confirmation():
     token = current_user.generate_confirmation_token()
     send_email(current_user.email, 'Confirm Your Account',
-                'auth/email/confirm', user=current_user, token=token)
+               'auth/email/confirm', user=current_user, token=token)
     flash('A new confirmation email has been sent to you by email.')
     return redirect(url_for('main.index'))
+
+
+@auth.route('/change-password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        if current_user.verify_password(form.old_password.data):
+            current_user.password = form.password.data
+            db.sesssion.add(current_user)
+            flash('Your password has benn updated.')
+            return redirect(url_for('main.index'))
+        else:
+            flash('Invaild password')
+    return render_templated('auth/change_password.html', form=form)
