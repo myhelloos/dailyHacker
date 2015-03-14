@@ -1,0 +1,13 @@
+Dear {{ user.username }},
+
+To confirm your new email address click on the following link:
+
+{{ url_for('auth.change_email', token=token, _external=True) }}
+
+If you have not request a password reset simply ignore this message.
+
+Sincerely,
+
+The Flasky Team
+
+Note: replies to this email address are not monitored.
