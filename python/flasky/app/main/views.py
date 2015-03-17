@@ -1,11 +1,13 @@
-from flask import render_template, session, redirect, url_for, current_app
-from .. import db
-from ..email import send_email
-from ..models import User
+from flask import render_template, abort
 from . import main
-from .forms import NameForm
+from ..models import User
 
 
 @main.route('/', methods=['GET', 'POSt'])
 def index():
     return render_template('index.html')
+
+@main.route('/user/<username>')
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template('user.html', user=user)
