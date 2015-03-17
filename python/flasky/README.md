@@ -1,7 +1,7 @@
 Flasky
 ======
 
-From the O'Reilly book [Flask Web Development]{http://www.flaskbook.com}
+From the O'Reilly book [Flask Web Development](http://www.flaskbook.com)
 
 * test whether install virtualenv:
 	`$ virtualenv --verison`
@@ -17,3 +17,7 @@ From the O'Reilly book [Flask Web Development]{http://www.flaskbook.com}
 * db upgrade
 	1. `python manager.py db migrate -m "information"`
 	2. `python manager.py db upgrade`
+
+* db creaate
+	1. `python manager.py shell`
+	2. `db.create_all()`
