@@ -69,7 +69,7 @@ def confirm(token):
     if current_user.confirmed:
         return redirect(url_for('main.index'))
     if current_user.confirm(token):
-        flash('You have confirmed you accoount. Thanks!')
+        flash('You have confirmed your account. Thanks!')
     else:
         flash('The confirmation link is invalid or has expored.')
     return redirect(url_for('main.index'))
@@ -93,7 +93,7 @@ def change_password():
         if current_user.verify_password(form.old_password.data):
             current_user.password = form.password.data
             db.session.add(current_user)
-            flash('Your password has benn updated.')
+            flash('Your password has been updated.')
             return redirect(url_for('main.index'))
         else:
             flash('Invaild password')

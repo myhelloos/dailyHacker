@@ -21,3 +21,10 @@ From the O'Reilly book [Flask Web Development](http://www.flaskbook.com)
 * db creaate
 	1. `python manager.py shell`
 	2. `db.create_all()`
+## Debug
+###1. alembic.util.CommandError: No such revision or branch 
+1. delete all the .sqllite files in my system (or drop the databases? not test)
+2. delete the migration history (may not be necessary, not test)
+3. init the db migration record `python manage.py db init`
+4. migrate db `python manage.py db migrate -m "reinit database" `
+5. upgrade db `python manage.py db upgrade`
