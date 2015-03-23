@@ -1,4 +1,4 @@
-compiled source #
+# compiled source #
 ###################
 *.com
 *.class
@@ -59,3 +59,6 @@ nosetests.xml
 
 # SQLite databases
 *.sqlite
+
+# txt file
+*.txt
