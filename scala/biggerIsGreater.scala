@@ -13,25 +13,15 @@ object Solution {
 
     def nextString(arr: Array[Char]): String = {
         var loc = -1;
-        for (i <- (0 until (arr.length-1)).reverse) {
-            loc = findNextChar(arr, i)
-            if (loc != -1) {
-                swap(arr, i, loc)
-                reverseRemain(arr, i)
-                return arr.mkString
+        for {i <- (0 until arr.length).reverse
+            j <- ((i + 1) until arr.length).reverse } {
+                if (arr(i) < arr(j)) {
+                    swap(arr, i, j)
+                    reverseRemain(arr, i)
+                    return arr.mkString
+                }
             }
-        }
         return arr.mkString
-    }
-
-    def findNextChar(arr: Array[Char], index: Int): Int = {
-        for (i <- (index + 1) until arr.length) {
-            if (i == (arr.length - 1) && arr(index) < arr(i)) return i
-            if (arr(index) < arr(i - 1) && arr(index) >= arr(i)) {
-                return i - 1
-            }
-        }
-        return -1
     }
 
     def swap(arr: Array[Char], index1: Int, index2: Int): Unit = {
