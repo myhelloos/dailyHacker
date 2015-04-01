@@ -15,13 +15,9 @@ object Solution {
         var loc = -1;
         for (i <- (0 until (arr.length-1)).reverse) {
             loc = findNextChar(arr, i)
-            println("loc " + loc)
             if (loc != -1) {
-                println("i " + i)
                 swap(arr, i, loc)
-                println("swap "+ arr.mkString)
                 reverseRemain(arr, i)
-                println("reverse " + arr.mkString)
                 return arr.mkString
             }
         }
@@ -29,11 +25,11 @@ object Solution {
     }
 
     def findNextChar(arr: Array[Char], index: Int): Int = {
-        for (i <- index until arr.length) {
-            if (i == (arr.length - 1) && arr(index) < arr(i)) {
-                return i
-            // problem how to find it?
-            } else if (i < (arr.length - 2) && arr(index) > arr(i)) return i - 1
+        for (i <- (index + 1) until arr.length) {
+            if (i == (arr.length - 1) && arr(index) < arr(i)) return i
+            if (arr(index) < arr(i - 1) && arr(index) >= arr(i)) {
+                return i - 1
+            }
         }
         return -1
     }
@@ -45,9 +41,9 @@ object Solution {
     }
 
     def reverseRemain(arr: Array[Char], begin: Int): Unit = {
-        val mid = (begin + arr.length - 1) / 2
-        for (i <- (begin+1) until mid; j <- (mid until arr.length).reverse) {
-            swap(arr, i, j)
+        val times = (arr.length - 1 - begin) / 2
+        for (i <- 1 to times) {
+            swap(arr, (begin + i), (arr.length - i))
         }
     }
 }
