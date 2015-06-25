@@ -2,7 +2,7 @@ window.onload = initPage;
 var welcomePaneShowing = true;
 
 function initPage() {
-  var tabs = 
+  var tabs =
     document.getElementById("tabs").getElementsByTagName("a");
   for (var i=0; i<tabs.length; i++) {
     var currentTab = tabs[i];
@@ -11,23 +11,25 @@ function initPage() {
     currentTab.onclick = showTab;
   }
 
-  var buttons = 
+  var buttons =
     document.getElementById("navigation").getElementsByTagName("a");
   for (var i=0; i<buttons.length; i++) {
     var currentBtn = buttons[i];
-    currentBtn.onmouseover = showHint;
-    currentBtn.onmouseout = hideHint;
+    addEventHandler(currentBtn, "mouseover", showHint);
+    addEventHandler(currentBtn, "mouseout", hideHint);
     currentBtn.onclick = showTab;
-    currentBtn.onmouseover = buttonOver;
-    currentBtn.onmouseout = buttonOut;
+    addEventHandler(currentBtn, "mouseover", buttonOver);
+    addEventHandler(currentBtn, "mouseout", buttonOut);
   }
 }
 
-function showHint() {
+function showHint(e) {
   if (!welcomePaneShowing) {
     return;
   }
-  switch (this.title) {
+
+  var me = getActivedObject(e);
+  switch (me.title) {
     case "beginners":
       var hintText = "Just getting started? Come join us!";
       break;
@@ -40,32 +42,33 @@ function showHint() {
       break;
     default:
       var hintText = "Click a tab to display the course " +
-                     "schedule for the class";  
-  }  
+                     "schedule for the class";
+  }
   var contentPane = document.getElementById("content");
   contentPane.innerHTML = "<h3>" + hintText + "</h3>";
 }
 
-function hideHint() {
+function hideHint(e) {
   if (welcomePaneShowing) {
     var contentPane = document.getElementById("content");
-    contentPane.innerHTML = 
+    contentPane.innerHTML =
       "<h3>Click a tab to display the course schedule for the class</h3>";
   }
 }
 
-function showTab() {
-  var selectedTab = this.title;
+function showTab(e) {
+  var me = getActivedObject(e);
+  var selectedTab = me.title;
   if (selectedTab == "welcome") {
     welcomePaneShowing = true;
-    document.getElementById("content").innerHTML = 
+    document.getElementById("content").innerHTML =
       "<h3>Click a tab to display the course schedule for the class</h3>";
   } else {
     welcomePaneShowing = false;
   }
 
   var tabs = document.getElementById("tabs").getElementsByTagName("a");
-  for (var i=0; i<tabs.length; i++) { 
+  for (var i=0; i<tabs.length; i++) {
     var currentTab = tabs[i];
     if (currentTab.title == selectedTab) {
       currentTab.className = 'active';
@@ -84,7 +87,7 @@ function showTab() {
   request.send(null);
 }
 
-function showSchedule() {
+function showSchedule(e) {
   if (request.readyState == 4) {
     if (request.status == 200) {
       document.getElementById("content").innerHTML = request.responseText;
@@ -92,9 +95,12 @@ function showSchedule() {
   }
 }
 
-function buttonOver() {
-  this.className = "active";
+function buttonOver(e) {
+  var me = getActivedObject(e);
+  me.className = "active";
 }
-function buttonOut() {
-  this.className = "";
+function buttonOut(e) {
+  var me = getActivedObject(e);
+  me.className = "";
 }
+
