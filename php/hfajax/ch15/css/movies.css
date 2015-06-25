@@ -19,4 +19,11 @@ body {
   width: 160px; 
 }
 input { border: 2px solid #1E3755; padding: 0 2px; width: 216px; }select { border: 2px solid #1E3755; width: 224px; }textarea { border: 2px solid #1E3755; padding: 0 2px; width: 216px; }
-#register { width: 100px; } 
+#register { width: 100px; }#username { 
+  background: #fff url('../images/status.gif') 202px 0 no-repeat; 
+  padding: 0 20px 0 2px; 
+  width: 198px; 
+}#username.thinking { background-position: 202px -19px; }#username.approved { background-position: 202px -35px; }#username.denied { 
+  background-color: #FF8282; 
+  background-position: 202px -52px; 
+}
