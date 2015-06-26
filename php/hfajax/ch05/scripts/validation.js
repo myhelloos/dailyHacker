@@ -101,6 +101,7 @@ function checkFormStatus()
 function registerUser()
 {
   setInterval("scrollImages()", 50);
+  disableInputs();
   document.getElementById("register").value = "Processing...";
   registerRequest = createRequest();
   if (registerRequest == null) {
@@ -140,5 +141,16 @@ function scrollImages() {
     }
     images[i].style.left = (left - 1) + "px";
   }
+}
+
+function disableInputs()
+{
+  var form = document.getElementById("registerForm");
+
+  for (var i = 0, l = form.length; i < l; i ++) {
+    var input = form[i];
+    input.disabled = true;
+  }
+
 }
 
