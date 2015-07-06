@@ -1,0 +1,2 @@
+[04-Sep-2011 19:16:46] PHP Parse error:  syntax error, unexpected $end in /home4/yellowta/public_html/phpMM/scripts/authorize.php on line 13
+[04-Sep-2011 20:13:53] PHP Parse error:  syntax error, unexpected T_STRING, expecting ']' in /home4/yellowta/public_html/phpMM/scripts/authorize.php on line 10

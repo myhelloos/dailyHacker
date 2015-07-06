@@ -40,10 +40,15 @@
 ehthumbs.db
 Thumbs.db
 
-# virtual environment
+# Project Info
+.metadata/
+
+# virtual environment #
+#######################
 venv/
 
-# Installer logs
+# Installer logs #
+##################
 pip-log.txt
 
 # Unit test / coverage reports
