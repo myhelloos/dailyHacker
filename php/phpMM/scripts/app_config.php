@@ -5,16 +5,19 @@ define("DEBUG_MODE", true);
 
 // Site root
 //define("SITE_ROOT", $_SERVER['DOCUMENT_ROOT'] . "/phpMM/");
-define("SITE_ROOT", "/opt/lampp/htdocs/dailyPHP/phpMM");
+define("SITE_ROOT", "/opt/lampp/htdocs/phpMM/");
 
 // Database connection constants
 define("DATABASE_HOST", "localhost");
-define("DATABASE_USERNAME", "yellowta_brett");
-define("DATABASE_PASSWORD", "8~3Myh9?J_mI");
-define("DATABASE_NAME", "yellowta_phpmm");
+//define("DATABASE_USERNAME", "yellowta_brett");
+//define("DATABASE_PASSWORD", "8~3Myh9?J_mI");
+//define("DATABASE_NAME", "yellowta_phpmm");
+define("DATABASE_USERNAME", "class");
+define("DATABASE_PASSWORD", "password");
+define("DATABASE_NAME", "class");
 
 // Error reporting
-if ($debug_mode) {
+if (DEBUG_MODE) {
   error_reporting(E_ALL);
 } else {
   // Turn off all error reporting

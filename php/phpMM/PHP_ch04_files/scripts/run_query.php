@@ -1,7 +1,7 @@
 <?php                                                                                               
   require '../../scripts/database_connection.php';
 
-  $query_text = $_REQUEST['query'];
+  $query_text = trim($_REQUEST['query']);
   $result = mysql_query($query_text);
 
   if (!$result) {
@@ -12,15 +12,15 @@
   $return_rows = false;
   $uppercase_query_text = strtoupper($query_text);
   $location = strpos($uppercase_query_text, "CREATE");
-  if ($location === false) {
+  if ($location === false || $location > 0) {
     $location = strpos($uppercase_query_text, "INSERT");
-    if ($location === false) {
+    if ($location === false || $location > 0) {
       $location = strpos($uppercase_query_text, "UPDATE");
-      if ($location === false) {
+      if ($location === false || $location > 0) {
         $location = strpos($uppercase_query_text, "DELETE");
-        if ($location === false) {
+        if ($location === false || $location > 0) {
           $location = strpos($uppercase_query_text, "DROP");
-          if ($location === false) {
+          if ($location === false || $location > 0) {
             // If we got here, it's not a CREATE, INSERT, UPDATE,
             //   DELETE, or DROP query. It should return rows.
             $return_rows = true;
