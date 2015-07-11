@@ -10,7 +10,7 @@
   }
 
   $return_rows = true;
-  if (preg_match("/^[ \t\r\n]*(CREATE|INSERT|UPDATE|DELETE|DROP)/i", $query_text)) {
+  if (preg_match("/^\s*(CREATE|INSERT|UPDATE|DELETE|DROP)/i", $query_text)) {
     $return_rows = false;
   }
 
