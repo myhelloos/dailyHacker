@@ -54,9 +54,11 @@ div.user_profile h1 {
 }
 
 div.user_profile img.user_pic {
-  border: solid;
+/*  border: solid;
   border-color: #ddd #aaa #aaa #ddd;
   border-width: 1px 2px 2px 1px;
+*/
+	border-radius: 250px;
   float: right;
   margin: 0 0 10px 25px;
   padding: 8px;

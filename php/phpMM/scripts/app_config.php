@@ -14,7 +14,7 @@ define("DATABASE_HOST", "localhost");
 //define("DATABASE_NAME", "yellowta_phpmm");
 define("DATABASE_USERNAME", "class");
 define("DATABASE_PASSWORD", "password");
-define("DATABASE_NAME", "class");
+define("DATABASE_NAME", "test");
 
 // Error reporting
 if (DEBUG_MODE) {
