@@ -10,7 +10,7 @@
   echo "<p>Connected to MySQL!</p>";
 
   mysql_select_db(DATABASE_NAME)
-    or die("<p>Error selecting the database " . DATABASE_NAME . mysql_error() . "</p>");
+    or handle_error("there's a configuration problem with our database.", mysql_error());
 
   echo "<p>Connected to MySQL, using database " . DATABASE_NAME . ".</p>";
 
