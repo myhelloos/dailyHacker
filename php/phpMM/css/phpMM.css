@@ -1,6 +1,7 @@
 body {
-  background: #75bb45 url('/phpMM/images/tmm_php-mysql_background.png') repeat-y;
-  margin: 0 68px 0 68px;
+  background: #75bb45 url('/phpMM/images/tmm_php-mysql_background.png') repeat-y top center;
+  margin: 0 auto;
+  width: 765px;
 }
 
 div#header {
