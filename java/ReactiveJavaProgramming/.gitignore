@@ -1,0 +1,7 @@
+/build
+/bin
+
+[hidden folers]
+.gradle/
+.settings/
+
