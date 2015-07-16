@@ -4,8 +4,7 @@
 define("DEBUG_MODE", true);
 
 // Site root
-//define("SITE_ROOT", $_SERVER['DOCUMENT_ROOT'] . "/phpMM/");
-define("SITE_ROOT", "/opt/lampp/htdocs/phpMM/");
+define("SITE_ROOT", $_SERVER['DOCUMENT_ROOT'] . "/phpMM/");
 
 // Database connection constants
 define("DATABASE_HOST", "localhost");
@@ -41,7 +40,7 @@ function handle_error($user_error_message, $system_error_message) {
 
 function get_web_path($file_system_path) {
   //return str_replace($_SERVER['DOCUMENT_ROOT'], '', $file_system_path);
-  $main_part =  str_replace('/opt/lampp/htdocs', '', $file_system_path);
+  $main_part =  str_replace($_SERVER['DOCUMENT_ROOT'], '', $file_system_path);
   $full = "{$main_part}";
   return $full;
 }

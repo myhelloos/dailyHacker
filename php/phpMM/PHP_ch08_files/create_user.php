@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 require_once '../scripts/app_config.php';
 require_once '../scripts/database_connection.php';
@@ -7,16 +7,19 @@ $upload_dir = SITE_ROOT . "uploads/profile_pics/";
 $image_fieldname = "user_pic";
 
 // Potential PHP upload errors
-$php_errors = array(1 => 'Maximum file size in php.ini exceeded',
-                    2 => 'Maximum file size in HTML form exceeded',
-                    3 => 'Only part of the file was uploaded',
-                    4 => 'No file was selected to upload.');
+$php_errors = array(
+  1 => 'Maximum file size in php.ini exceeded',
+  2 => 'Maximum file size in HTML form exceeded',
+  3 => 'Only part of the file was uploaded',
+  4 => 'No file was selected to upload.'
+);
 
 $first_name = trim($_REQUEST['first_name']);
 $last_name = trim($_REQUEST['last_name']);
 $email = trim($_REQUEST['email']);
 $bio = trim($_REQUEST['bio']);
-$facebook_url = str_replace("facebook.org", "facebook.com", trim($_REQUEST['facebook_url']));
+$facebook_url = str_replace("facebook.org", "facebook.com", 
+  trim($_REQUEST['facebook_url']));
 $position = strpos($facebook_url, "facebook.com");
 if ($position === false) {
   $facebook_url = "http://www.facebook.com/" . $facebook_url;
@@ -28,48 +31,43 @@ $position = strpos($twitter_handle, "@");
 if ($position === false) {
   $twitter_url = $twitter_url . $twitter_handle;
 } else {
-  $twitter_url = $twitter_url . substr($twitter_handle, $position + 1);
+  $twitter_url = $twitter_url . substr($twitter_handle, $position+1);
 }
 
 // Make sure we didn't have an error uploading the image
 ($_FILES[$image_fieldname]['error'] == 0)
-  or handle_error("the server couldn't upload the image you selected.",
-                  $php_errors[$_FILES[$image_fieldname]['error']]);
+  or handle_error("the server couldn't upload the image you selected.", $php_errors[$_FILES[$image_fieldname]['error']]);
 
 // Is this file the result of a valid upload?
 @is_uploaded_file($_FILES[$image_fieldname]['tmp_name'])
-  or handle_error("you were trying to do something naughty. Shame on you!",
-                  "Uploaded request: file named '{$_FILES[$image_fieldname]['tmp_name']}'");
+  or handle_error("you were trying to do something naughty. Shame on you?",
+  "Upload request: file named '{$_FILES[$image_fieldname]['tmp_name']}'");
 
 // Is this actually an image?
 @getimagesize($_FILES[$image_fieldname]['tmp_name'])
   or handle_error("you selected a file for your picture that isn't an image.",
-                  "{$_FILES[$image_fieldname]['tmp_name']} isn't a valid image file.");
+    "{$_FILES[$image_fieldname]['tmp_name']} isn't a valid image file"); 
 
 // Name the file uniquely
 $now = time();
-while (file_exists($upload_filename = $upload_dir . $now .
-                                     '-' .
-                                     $_FILES[$image_fieldname]['name'])) {
-    $now++;
+while (file_exists($upload_filename = $upload_dir . $now . '-' . $_FILES[$image_fieldname]['name'])) {
+  $now++;
 }
-
-echo $upload_filename;
-echo "<br />";
-echo $_FILES[$image_fieldname]['tmp_name'];
 
 // Finally, move the file to its permanent location
 @move_uploaded_file($_FILES[$image_fieldname]['tmp_name'], $upload_filename)
   or handle_error("we had a problem saving your image to its permanent location.",
-                  "permissions or related error moving file to {$upload_filename}");
+  "permissions or related error moving file to {$upload_filename}");
 
-$insert_sql = "INSERT INTO users (first_name, last_name, email, bio, facebook_url, twitter_handle, user_pic_path) " .
-              "VALUES ('{$first_name}', '{$last_name}', '{$email}', '{$bio}', " .
-                      "'{$facebook_url}', '{$twitter_handle}', '{$upload_filename}');";
+
+$insert_sql = "INSERT INTO users (first_name, last_name, email, bio,
+	facebook_url, twitter_handle, user_pic_path)  
+	VALUES ('{$first_name}', '{$last_name}', '{$email}', '{$bio}',
+	'{$facebook_url}', '{$twitter_url}', '{$upload_filename}');";
 
 // Insert the user into the database
-mysql_query($insert_sql);
+mysql_query($insert_sql) or handle_error("there is an error while permanenting your data", mysql_error());
 
 // Redirect the user to the page that displays user information
 header("Location: show_user.php?user_id=" . mysql_insert_id());
-?>
+exit();
