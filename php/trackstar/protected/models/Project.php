@@ -48,6 +48,8 @@ class Project extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+          'issues' => array(self::HAS_MANY, 'Issue', 'project_id'),
+          'users' => array(self::MANY_MANY, 'User', 'tbl_project_user_assignment(project_id, user_id)'),
         );
     }
 
@@ -107,5 +109,14 @@ class Project extends CActiveRecord
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+
+    /**
+    * @return array of valid users for this project, indexed by user iis_get_dir_security
+    */
+    public function getUserOptions()
+    {
+      $usersArray = CHtml::listData($this->users, 'id', 'username');
+      return $usersArray;
     }
 }
