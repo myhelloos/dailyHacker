@@ -1,4 +1,4 @@
-package edu.tj.di;
+package spring.di;
 
 import java.util.List;
 
