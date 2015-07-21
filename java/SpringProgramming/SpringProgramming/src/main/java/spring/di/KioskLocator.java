@@ -9,6 +9,9 @@ public class KioskLocator implements SourceLocator {
 
 	private static List<RentalLocation> locations = new ArrayList<RentalLocation>();
 	
+	public KioskLocator(String key) {
+	}
+	
 	static {
 		locations.add(new RentalLocation("Kiosk A", Arrays.asList("Forest Gump", "Speed")));
 		locations.add(new RentalLocation("Kiosk B", Arrays.asList("Jaws", "Ghost")));
