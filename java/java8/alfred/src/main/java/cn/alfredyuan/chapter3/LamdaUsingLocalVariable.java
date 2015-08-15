@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.chapter3;
+package cn.alfredyuan.chapter3;
 
 public class LamdaUsingLocalVariable {
   private int instanceVariable = 10086;

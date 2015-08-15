@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.puzzle;
+package cn.alfredyuan.puzzle;
 
 public class MeaningOfThis
 {

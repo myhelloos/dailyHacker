@@ -1,7 +1,9 @@
-package cn.alfredyuan.www.chapter3;
+package cn.alfredyuan.chapter3;
 
-import cn.alfredyuan.www.chapter2.Apple;
 import java.util.function.Supplier;
+
+import cn.alfredyuan.chapter2.Apple;
+
 import java.util.function.Function;
 import java.util.function.BiFunction;
 import java.util.List;

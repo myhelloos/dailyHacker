@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.chapter2;
+package cn.alfredyuan.chapter2;
 
 public interface Predicate<T> {
   boolean test(T t);

@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.chapter3;
+package cn.alfredyuan.chapter3;
 
 public class Letter {
   public static String addHeader(String text) {

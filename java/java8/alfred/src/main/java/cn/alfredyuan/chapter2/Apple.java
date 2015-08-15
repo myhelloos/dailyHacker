@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.chapter2;
+package cn.alfredyuan.chapter2;
 
 public class Apple {
   private Integer weight;

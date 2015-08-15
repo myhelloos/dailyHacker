@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.chapter2;
+package cn.alfredyuan.chapter2;
 
 import java.util.Arrays;
 import java.util.List;

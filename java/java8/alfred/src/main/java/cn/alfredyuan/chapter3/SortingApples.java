@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.chapter3;
+package cn.alfredyuan.chapter3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import cn.alfredyuan.www.chapter2.Apple;
+import cn.alfredyuan.chapter2.Apple;
 
 public class SortingApples {
   public static void main(String[] args) {

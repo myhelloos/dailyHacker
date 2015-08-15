@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.alfred;
+package cn.alfredyuan.alfred;
 
 /**
  * Hello world!

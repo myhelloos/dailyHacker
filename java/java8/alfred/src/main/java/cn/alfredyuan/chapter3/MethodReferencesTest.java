@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.chapter3;
+package cn.alfredyuan.chapter3;
 
 import java.util.Arrays;
 import java.util.Comparator;

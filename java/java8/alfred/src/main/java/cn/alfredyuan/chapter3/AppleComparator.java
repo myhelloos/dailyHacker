@@ -1,8 +1,8 @@
-package cn.alfredyuan.www.chapter3;
+package cn.alfredyuan.chapter3;
 
 import java.util.Comparator;
 
-import cn.alfredyuan.www.chapter2.Apple;
+import cn.alfredyuan.chapter2.Apple;
 
 public class AppleComparator implements Comparator<Apple> {
 

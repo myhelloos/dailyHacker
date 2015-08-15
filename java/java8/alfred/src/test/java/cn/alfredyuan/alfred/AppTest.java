@@ -1,4 +1,4 @@
-package cn.alfredyuan.www.alfred;
+package cn.alfredyuan.alfred;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
