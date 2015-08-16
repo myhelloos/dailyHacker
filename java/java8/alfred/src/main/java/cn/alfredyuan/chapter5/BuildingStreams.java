@@ -1,4 +1,4 @@
-package cn.alfredyuan.chapter4;
+package cn.alfredyuan.chapter5;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
