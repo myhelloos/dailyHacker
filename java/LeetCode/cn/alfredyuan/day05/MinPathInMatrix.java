@@ -53,5 +53,4 @@ public class MinPathInMatrix {
         }
         return arr[less - 1];
       }
-
 }
