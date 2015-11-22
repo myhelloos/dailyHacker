@@ -1,9 +1,6 @@
 package cn.alfredyuan.tencent;
 
-import java.util.HashMap;
-
 public class GrayCode {
-  HashMap<K, V>
   public static int[] grayCode(int N) {
     if (N <= 0) throw new IllegalArgumentException("the N must be positive");
     int[] code = new int[N];

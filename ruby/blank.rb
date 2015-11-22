@@ -6,7 +6,9 @@ end
 
 class String
     def blank?
+
         self.size == 0
+        
     end
 end
 
